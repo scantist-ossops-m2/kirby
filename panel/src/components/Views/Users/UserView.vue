@@ -26,27 +26,7 @@
 			</template>
 
 			<template #buttons>
-				<k-account-theme-button v-if="$panel.view.id === 'account'" />
-
-				<k-button-group>
-					<k-button
-						:disabled="isLocked"
-						:dropdown="true"
-						:title="$t('settings')"
-						icon="cog"
-						size="sm"
-						variant="filled"
-						class="k-user-view-options"
-						@click="$refs.settings.toggle()"
-					/>
-					<k-dropdown-content
-						ref="settings"
-						align-x="end"
-						:options="$dropdown(id)"
-					/>
-					<k-languages-dropdown />
-				</k-button-group>
-
+				<k-model-view-buttons :buttons="buttons" :props="{ id, isLocked }" />
 				<k-form-buttons :lock="lock" />
 			</template>
 		</k-header>
@@ -73,7 +53,12 @@
 import ModelView from "../ModelView.vue";
 
 export default {
-	extends: ModelView
+	extends: ModelView,
+	computed: {
+		buttons() {
+			return ["account-theme", "model-settings", "model-languages"];
+		}
+	}
 };
 </script>
 

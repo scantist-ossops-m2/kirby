@@ -1,5 +1,6 @@
 <template>
 	<k-button
+		v-if="$panel.view.id === 'account'"
 		:icon="icon"
 		:text="text"
 		size="sm"

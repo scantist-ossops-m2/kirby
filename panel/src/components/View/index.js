@@ -5,8 +5,12 @@ import Outside from "./Outside.vue";
 import Panel from "./Panel.vue";
 import Topbar from "./Topbar.vue";
 
+import Buttons from "./Buttons/index.js";
+
 export default {
 	install(app) {
+		app.use(Buttons);
+
 		app.component("k-activation", Activation);
 		app.component("k-panel", Panel);
 		app.component("k-panel-inside", Inside);

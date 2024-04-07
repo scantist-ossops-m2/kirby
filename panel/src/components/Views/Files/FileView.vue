@@ -16,38 +16,12 @@
 			@edit="$dialog(id + '/changeName')"
 		>
 			{{ model.filename }}
+
 			<template #buttons>
-				<k-button-group>
-					<k-button
-						:link="preview.url"
-						:responsive="true"
-						:title="$t('open')"
-						class="k-file-view-options"
-						icon="open"
-						size="sm"
-						target="_blank"
-						variant="filled"
-					/>
-
-					<k-button
-						:disabled="isLocked"
-						:dropdown="true"
-						:title="$t('settings')"
-						icon="cog"
-						size="sm"
-						variant="filled"
-						class="k-file-view-options"
-						@click="$refs.settings.toggle()"
-					/>
-					<k-dropdown-content
-						ref="settings"
-						:options="$dropdown(id)"
-						align-x="end"
-						@action="action"
-					/>
-
-					<k-languages-dropdown />
-				</k-button-group>
+				<k-model-view-buttons
+					:buttons="buttons"
+					:props="{ id, isLocked, model, permissions, preview }"
+				/>
 
 				<k-form-buttons :lock="lock" />
 			</template>
@@ -76,6 +50,9 @@ export default {
 		preview: Object
 	},
 	computed: {
+		buttons() {
+			return ["file-preview", "file-settings", "model-languages"];
+		},
 		focus() {
 			const focus = this.$store.getters["content/values"]()["focus"];
 
@@ -99,15 +76,6 @@ export default {
 		}
 	},
 	methods: {
-		action(action) {
-			switch (action) {
-				case "replace":
-					return this.$panel.upload.replace({
-						...this.preview,
-						...this.model
-					});
-			}
-		},
 		setFocus(focus) {
 			if (this.$helper.object.isObject(focus) === true) {
 				focus = `${focus.x}% ${focus.y}%`;

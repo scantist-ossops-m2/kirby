@@ -12,19 +12,12 @@
 			@edit="$dialog('site/changeTitle')"
 		>
 			{{ model.title }}
+
 			<template #buttons>
-				<k-button-group>
-					<k-button
-						:link="model.previewUrl"
-						:title="$t('open')"
-						icon="open"
-						target="_blank"
-						variant="filled"
-						size="sm"
-						class="k-site-view-preview"
-					/>
-					<k-languages-dropdown />
-				</k-button-group>
+				<k-model-view-buttons
+					:buttons="buttons"
+					:props="{ id, isLocked, model, permissions }"
+				/>
 
 				<k-form-buttons :lock="lock" />
 			</template>
@@ -50,6 +43,9 @@ export default {
 	extends: ModelView,
 	emits: ["submit"],
 	computed: {
+		buttons() {
+			return ["model-preview", "model-languages"];
+		},
 		protectedFields() {
 			return ["title"];
 		}

@@ -16,45 +16,12 @@
 			@edit="$dialog(id + '/changeTitle')"
 		>
 			{{ model.title }}
+
 			<template #buttons>
-				<k-button-group>
-					<k-button
-						v-if="permissions.preview && model.previewUrl"
-						:link="model.previewUrl"
-						:title="$t('open')"
-						icon="open"
-						target="_blank"
-						variant="filled"
-						size="sm"
-						class="k-page-view-preview"
-					/>
-
-					<k-button
-						:disabled="isLocked === true"
-						:dropdown="true"
-						:title="$t('settings')"
-						icon="cog"
-						variant="filled"
-						size="sm"
-						class="k-page-view-options"
-						@click="$refs.settings.toggle()"
-					/>
-					<k-dropdown-content
-						ref="settings"
-						:options="$dropdown(id)"
-						align-x="end"
-					/>
-
-					<k-languages-dropdown />
-
-					<k-button
-						v-if="status"
-						v-bind="statusBtn"
-						class="k-page-view-status"
-						variant="filled"
-						@click="$dialog(id + '/changeStatus')"
-					/>
-				</k-button-group>
+				<k-model-view-buttons
+					:buttons="buttons"
+					:props="{ id, isLocked, model, permissions, status }"
+				/>
 
 				<k-form-buttons :lock="lock" />
 			</template>
@@ -81,21 +48,16 @@ export default {
 		status: Object
 	},
 	computed: {
+		buttons() {
+			return [
+				"model-preview",
+				"model-settings",
+				"model-languages",
+				"page-status"
+			];
+		},
 		protectedFields() {
 			return ["title"];
-		},
-		statusBtn() {
-			return {
-				...this.$helper.page.status.call(
-					this,
-					this.model.status,
-					!this.permissions.changeStatus || this.isLocked
-				),
-				responsive: true,
-				size: "sm",
-				text: this.status.label,
-				variant: "filled"
-			};
 		}
 	}
 };
@@ -105,11 +67,5 @@ export default {
 /** TODO: .k-page-view:has(.k-tabs) .k-page-view-header */
 .k-page-view[data-has-tabs="true"] .k-page-view-header {
 	margin-bottom: 0;
-}
-
-.k-page-view-status {
-	--button-color-back: var(--color-gray-300);
-	--button-color-icon: var(--theme-color-600);
-	--button-color-text: initial;
 }
 </style>
