@@ -43,9 +43,6 @@ export default {
 	extends: ModelView,
 	emits: ["submit"],
 	computed: {
-		buttons() {
-			return ["model-preview", "model-languages"];
-		},
 		protectedFields() {
 			return ["title"];
 		}

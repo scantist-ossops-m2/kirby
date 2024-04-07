@@ -48,14 +48,6 @@ export default {
 		status: Object
 	},
 	computed: {
-		buttons() {
-			return [
-				"model-preview",
-				"model-settings",
-				"model-languages",
-				"page-status"
-			];
-		},
 		protectedFields() {
 			return ["title"];
 		}

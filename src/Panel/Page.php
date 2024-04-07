@@ -39,6 +39,14 @@ class Page extends Model
 		);
 	}
 
+	public function buttons(): array
+	{
+		return ["model-preview",
+				"model-settings",
+				"model-languages",
+				"page-status"];
+	}
+
 	/**
 	 * Provides a kirbytag or markdown
 	 * tag for the page, which will be

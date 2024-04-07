@@ -5,6 +5,7 @@
 export default {
 	props: {
 		blueprint: String,
+		buttons: Array,
 		next: Object,
 		prev: Object,
 		permissions: {

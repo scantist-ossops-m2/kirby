@@ -50,9 +50,6 @@ export default {
 		preview: Object
 	},
 	computed: {
-		buttons() {
-			return ["file-preview", "file-settings", "model-languages"];
-		},
 		focus() {
 			const focus = this.$store.getters["content/values"]()["focus"];
 

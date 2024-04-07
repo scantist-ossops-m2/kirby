@@ -64,6 +64,11 @@ class File extends Model
 		return $breadcrumb;
 	}
 
+	public function buttons(): array
+	{
+		return ["file-preview", "file-settings", "model-languages"];
+	}
+
 	/**
 	 * Provides a kirbytag or markdown
 	 * tag for the file, which will be

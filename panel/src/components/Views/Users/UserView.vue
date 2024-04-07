@@ -53,12 +53,7 @@
 import ModelView from "../ModelView.vue";
 
 export default {
-	extends: ModelView,
-	computed: {
-		buttons() {
-			return ["account-theme", "model-settings", "model-languages"];
-		}
-	}
+	extends: ModelView
 };
 </script>
 

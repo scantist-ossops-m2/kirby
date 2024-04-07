@@ -39,6 +39,11 @@ class User extends Model
 		];
 	}
 
+	public function buttons(): array
+	{
+		return ["account-theme", "model-settings", "model-languages"];
+	}
+
 	/**
 	 * Provides options for the user dropdown
 	 */

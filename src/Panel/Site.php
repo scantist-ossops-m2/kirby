@@ -23,6 +23,11 @@ class Site extends Model
 	 */
 	protected ModelWithContent $model;
 
+	public function buttons(): array
+	{
+		return ["model-preview", "model-languages"];
+	}
+
 	/**
 	 * Returns the setup for a dropdown option
 	 * which is used in the changes dropdown
