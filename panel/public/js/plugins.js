@@ -1,5 +1,6 @@
 window.panel = window.panel ?? {};
 window.panel.plugins = {
+	buttons: {},
 	components: {},
 	created: [],
 	icons: {},
@@ -28,6 +29,11 @@ window.panel.plugin = function (plugin, extensions) {
 	// Components
 	resolve(extensions, "components", (name, options) => {
 		window.panel.plugins.components[name] = options;
+	});
+
+	// Buttons
+	resolve(extensions, "buttons", (name, options) => {
+		window.panel.plugins.components[`k-${name}-button`] = options;
 	});
 
 	// Fields
