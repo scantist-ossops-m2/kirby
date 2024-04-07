@@ -66,7 +66,7 @@ class File extends Model
 
 	public function buttons(): array
 	{
-		return ["file-preview", "file-settings", "model-languages"];
+		return $this->model->blueprint()->buttons() ?? ["file-preview", "file-settings", "model-languages"];
 	}
 
 	/**

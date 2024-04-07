@@ -25,7 +25,7 @@ class Site extends Model
 
 	public function buttons(): array
 	{
-		return ["model-preview", "model-languages"];
+		return $this->model->blueprint()->buttons() ?? ["model-preview", "model-languages"];
 	}
 
 	/**

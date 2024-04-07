@@ -41,7 +41,7 @@ class User extends Model
 
 	public function buttons(): array
 	{
-		return ["account-theme", "model-settings", "model-languages"];
+		return $this->model->blueprint()->buttons() ?? ["account-theme", "model-settings", "model-languages"];
 	}
 
 	/**

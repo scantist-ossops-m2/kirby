@@ -207,6 +207,11 @@ class Blueprint
 		return [($uploads['template'] ?? 'default')];
 	}
 
+	public function buttons(): array|null
+	{
+		return $this->props['buttons'] ?? null;
+	}
+
 	/**
 	 * Converts all column definitions, that
 	 * are not wrapped in a tab, into a generic tab

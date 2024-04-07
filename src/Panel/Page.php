@@ -41,10 +41,7 @@ class Page extends Model
 
 	public function buttons(): array
 	{
-		return ["model-preview",
-				"model-settings",
-				"model-languages",
-				"page-status"];
+		return $this->model->blueprint()->buttons() ?? ["model-preview", "model-settings", "model-languages", "page-status"];
 	}
 
 	/**
